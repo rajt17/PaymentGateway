@@ -12,7 +12,7 @@ const app = express();
 
 const routes=require('./routes.js');
 
-var db=mongoose.connect(process.env.MONGODB_URI ||  'mongodb://localhost:27017/PaymentGateway',{useNewUrlParser:true}).then(()=>console.log('MongoDb Connected'))
+var db=mongoose.connect(process.env.MONGODB_URI ).then(()=>console.log('MongoDb Connected'))
 .catch(err => console.log(err));
 
 localAuth(passport);
