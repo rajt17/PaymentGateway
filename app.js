@@ -7,12 +7,11 @@ const passport=require('passport');
 const {localAuth}=require('./config/passport');
 const mongoose=require('mongoose');
 const session=require('express-session');
-const flash=require('connect-flash');
 const app = express();
 
 const routes=require('./routes.js');
 
-var db=mongoose.connect(process.env.MONGODB_URI ).then(()=>console.log('MongoDb Connected'))
+var db=mongoose.connect('mongodb+srv://Rajat:Bhoolgaya0@cluster0-kr99w.mongodb.net/test?retryWrites=true',{ useNewUrlParser: true }).then(()=>console.log('MongoDb Connected'))
 .catch(err => console.log(err));
 
 localAuth(passport);

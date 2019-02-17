@@ -41,8 +41,7 @@ router.get('/', (req, res) => {
 router.post('/login', (req, res, next) => {
   passport.authenticate('local', {
     successRedirect: '/direct',
-    failureRedirect: '/',
-    failureFlash: true
+    failureRedirect: '/'
   })(req, res, next);
 });
 router.post('/receiveNotif', (req, res) => {
@@ -126,6 +125,7 @@ router.post('/subscribe', (req, res) => {
           lab.expDate = sub.created
         lab.save().then(labs => {
           session=lab;
+          console.log(lab);
         })
       });
       res.redirect('/main');
