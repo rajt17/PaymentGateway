@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M"
+    crossorigin="anonymous">
+  <title>Web Development</title>
+  <style>
+      button { border-radius: 8%;}
+      a:link, a:visited,a:hover, a:active {
+     color: white;
+     text-decoration: none;
+}
+      </style>
+  <script>
+    $(document).ready(function(){
+
+    $('#degrade').click(function()
+        {
+            $.ajax({
+                type: "POST",
+                url: "/degradeSub",
+                data: JSON.stringify({ value: 'degrade' }),
+                contentType: 'application/json',
+                success: function (res) {
+                  alert('You have to Pay '+(res.value*(-1))/100.0+'$ less next month');
+                   window.location.replace('/main');
+                },
+                error: function (xhr, status) {
+                    alert('Sorry, there was a problem!');
+                }
+
+            });
+        });
+        $('#upgrade').click(function()
+        {
+            $.ajax({
+                type: "POST",
+                url: "/upgradeSub",
+                data: JSON.stringify({ value: 'upgrade' }),
+                contentType: 'application/json',
+                success: function (res) {
+                  alert('You have to Pay '+(res.value)/100.0+'$ extra next month');
+                  window.location.replace('/main');
+                },
+                error: function (xhr, status) {
+                    alert('Sorry, there was a problem!');
+                }
+
+            });
+        });
+      })
+  </script>
+</head>
+
+<body class="bg-primary text-white">
+  <nav class="navbar navbar-expand-md navbar-dark bg-dark py-3">
+    <div class="container">
+      <a href="#" class="navbar-brand">
+        <h3 class="d-inline align-middle">Payment Gateway</h3>
+      </a>
+    </div>
+  </nav>
+  <div class="container">
+
+    <section class="py-2">
+      <div class="row">
+        <div class="col-md-6 ">
+          <h1 class="display-3 mt-3 pt-5">
+            Spend Your Credits
+          </h1><% if(tokens === '10') {%>
+          <button class="bg-primary" value="change"><a id="upgrade" style="color:antiquewhite">Upgrade My Plan</a></button>
+          <br>
+          <br>
+          <% } else {%>
+          <button class="bg-primary" value="change"><a id="degrade" style="color:antiquewhite">Degrade My Plan</a></button>
+          <br>
+          <br>
+          <% }%>
+          <button class="bg-primary" value="change"><a href="cancelSub" style="color:antiquewhite">Cancel My Plan</a></button>
+        </div>
+        <div class="col-md-6" style="padding-top: 6%;">
+            <h1 class="display-3 mt-3 pt-5">
+                You Have <%=tokens%> Credits
+              </h1>
+          </div>
+        
+      </div>
+    </section>
+    
+  </div>
+  
+</body>
+
+</html>
