@@ -11,7 +11,7 @@ const app = express();
 
 const routes=require('./routes.js');
 
-var db=mongoose.connect('mongodb+srv://Rajat:Bhoolgaya0@cluster0-kr99w.mongodb.net/test?retryWrites=true',{ useNewUrlParser: true }).then(()=>console.log('MongoDb Connected'))
+var db=mongoose.connect('mongodb://Rajat:Bhoolgaya0@cluster0-shard-00-00-kr99w.mongodb.net:27017,cluster0-shard-00-01-kr99w.mongodb.net:27017,cluster0-shard-00-02-kr99w.mongodb.net:27017/test?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin&retryWrites=true',{ useNewUrlParser: true }).then(()=>console.log('MongoDb Connected'))
 .catch(err => console.log(err));
 
 localAuth(passport);
