@@ -1,4 +1,4 @@
-const keys = require('./keys');
+const keys = require('../file/keys');
 const stripe = require('stripe')(keys.stripeSecretKey);
 
 module.exports={

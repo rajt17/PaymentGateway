@@ -1,5 +1,5 @@
 var nodemailer = require('nodemailer');
-const keys=require('./keys');
+const keys=require('../file/keys');
 
 module.exports={
    sendMail : function(rec,msg){

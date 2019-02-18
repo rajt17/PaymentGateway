@@ -1,8 +1,8 @@
 const express = require('express');
-const keys = require('./config/keys');
+const keys = require('./file/keys');
 const router = express.Router();
 const stripe = require('stripe')(keys.stripeSecretKey);
-const { plan1, plan2 } = require('./config/plans');
+const { plan1, plan2 } = require('./file/plans');
 const passport = require('passport');
 const User = require('./model/user');
 const { sendMail } = require('./config/nodemailer');

@@ -1,6 +1,6 @@
-const keys = require('./keys');
+const keys = require('../file/keys');
 const stripe = require('stripe')(keys.stripeSecretKey);
-const {plan1,plan2}=require('./plans');
+const {plan1,plan2}=require('../file/plans');
 module.exports={
     changePlan:function(session,plan)
     {
