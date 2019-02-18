@@ -1,12 +1,13 @@
 var nodemailer = require('nodemailer');
+const keys=require('./keys');
 
 module.exports={
    sendMail : function(rec,msg){
   var transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
-      user:'rrohan228844@gmail.com',
-      pass: 'Blueshift0'
+      user:keys.email,
+      pass:keys.password
     }
   });
 

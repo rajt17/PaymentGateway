@@ -48,15 +48,22 @@ router.post('/receiveNotif', (req, res) => {
 
   const event = (req.body);
   const cust = event.data.object;
-  console.log(cust);
+  console.log(event);
+  console.log('hij');
+  if (event.type === 'customer.subscription.deleted') {
+    let msg = 'Hi there, As per your request your subscription has been canceled.';
+    
+    msg += ' Thank You'
+    sendMail(session.email, msg);
+  }
   if (event.type === 'invoice.payment_succeeded') {
-    let msg = 'Hi there,Your payment For Web Development plan of Rs' + cust.amount_paid + 'has been done.';
+    let msg = 'Hi there,Your payment For Web Development plan of ' + cust.amount_paid/100.0 + '$ has been done.';
     msg += 'Here are the details of same :' + cust.hosted_invoice_url;
     msg += ' Thank You'
     sendMail(session.email, msg);
   }
   else if (event.type === 'invoice.payment_failed') {
-    let msg = 'Hi there,Your payment For Web Development plan of Rs' + cust.amount_paid + 'has failed due to some reasons.';
+    let msg = 'Hi there,Your payment For Web Development plan of ' + cust.amount_paid/100.0 + '$ has failed due to some reasons.';
     msg += 'Here are the details of same :' + cust.hosted_invoice_url;
     msg += ' Thank You'
     sendMail(session.email, msg);
